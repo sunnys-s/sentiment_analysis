@@ -38,7 +38,7 @@ def predict():
         # x_input, predictions = make_prediction(request.args['chat_in'])
         x_input, predictions = get_paragraph_sentiment(para)
         print(x_input)
-        no_of_sentences = len(predictions) + 1
+        no_of_sentences = len(predictions)
         predictions = enumerate(predictions)
         return flask.render_template('predictor.html',
                                      chat_in=x_input,
@@ -49,7 +49,7 @@ def predict():
         # we need to pass an empty string into make_prediction function so no errors are thrown.
         # x_input, predictions = make_prediction('')
         x_input, predictions = get_paragraph_sentiment(para)
-        no_of_sentences = len(predictions) + 1
+        no_of_sentences = len(predictions)
         predictions = enumerate(predictions)
         return flask.render_template('predictor.html',
                                      chat_in=x_input,
