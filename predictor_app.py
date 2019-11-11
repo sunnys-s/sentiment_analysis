@@ -1,9 +1,9 @@
 import flask
-from flask import request
+from flask import jsonify, make_response, request, redirect
+
 from predictor_api import make_prediction
 # from sentiment_analysis import get_paragraph_sentiment
-from classifier import get_paragraph_sentiment
-from flask import jsonify
+from classifier import get_paragraph_sentiment, analyze_sentiment
 
 # Initialize the app
 
@@ -56,6 +56,15 @@ def predict():
                                      prediction=predictions,
                                      no_of_sentences=no_of_sentences)
 
+
+@app.route('/sentiment', methods=['GET', 'POST'])
+def sentiment_analysis():
+    if request.method == 'GET':
+        text = request.args.get('text')
+        if text:
+            result = analyze_sentiment(text)
+            return make_response(jsonify({'sentiment': result[0], 'text': text, 'status_code':200}), 200)
+        return make_response(jsonify({'error':'sorry! unable to parse', 'status_code':500}), 500)
 
 # Start the server, continuously listen to requests.
 
