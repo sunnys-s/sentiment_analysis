@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+  <title>Twitch Chat Toxicity Predictor</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+  <link rel="icon" type="image/png" href="static/images/icons/cat.png"/>
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="static/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="static/vendor/animate/animate.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="static/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="static/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="static/css/util.css">
+  <link rel="stylesheet" type="text/css" href="static/css/main.css">
+<!--===============================================================================================-->
+</head>
+
+<body>
+
+  <style>
+    body{
+      background-image: url("static/images/gifs/ezgif.com-rotate.gif"), url("static/images/gifs/ezgif.com-crop.gif");
+      background-size: auto;
+      background-position: 95% 10%, 5% 10%;
+      /* background-position: right center, left center; */
+      background-size: 20%;
+      background-attachment: inherit;
+      background-repeat: no-repeat, no-repeat;
+      background-color: #E6E2E1;
+    }
+  </style>
+
+  <div id="example1" class="limiter">
+    <div class="container-table100">
+      <div class="wrap-table100">
+        <div class="table100">
+          <form action="/">
+            <div style="text-align: center;">
+              <br>
+                <h1 class="headertext">Sentence Sentiment Analysis</h1>
+                <br>
+                Enter a sentence or multiple-sentences to check their Sentiment.
+                <br>
+                <br>
+                <center>
+                  <textarea align = "center" type="text" name="chat_in" autofocus="autofocus" value="{{x_input}}" maxlength="1500" rows="10" id="rcorners2"></textarea>
+                </center>
+            <br>
+            <!-- Submit button -->
+            <center>
+              <input align="center" type="submit" value="Submit" method="get" id="rcorners1">
+            </center>
+            <br>
+          </form>
+        </div>
+          <table>
+            <thead>
+              <tr class="table100-head">
+                <th class="column1">Sentence</th>
+                <th colspan="2" class="column1">Sentiment (Predictions)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i, p in prediction %}
+                <tr>
+                  {% if(i== 0) %}
+                    <td rowspan={{no_of_sentences}} class="column1">{{ chat_in }}</td>
+                  {% endif %}
+                  <td class="column1">{{p['sentence']}}</td>
+                  <td class="column2">{{p['sentiment']}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!--===============================================================================================-->
+  <script src="static/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+  <script src="static/vendor/bootstrap/js/popper.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+  <script src="static/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+  <script src="static/js/main.js"></script>
+
+</body>
+</html>
