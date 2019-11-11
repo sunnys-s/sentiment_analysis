@@ -2,7 +2,6 @@ flask
 gunicorn
 nltk
 numpy
-re
 scikit-learn
 textblob
 
