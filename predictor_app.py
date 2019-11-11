@@ -1,7 +1,8 @@
 import flask
 from flask import request
 from predictor_api import make_prediction
-from sentiment_analysis import get_paragraph_sentiment
+# from sentiment_analysis import get_paragraph_sentiment
+from classifier import get_paragraph_sentiment
 from flask import jsonify
 
 # Initialize the app
