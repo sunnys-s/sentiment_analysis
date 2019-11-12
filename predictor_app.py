@@ -66,6 +66,14 @@ def sentiment_analysis():
             return make_response(jsonify({'sentiment': result[0], 'text': text, 'status_code':200}), 200)
         return make_response(jsonify({'error':'sorry! unable to parse', 'status_code':500}), 500)
 
+@app.route('/sentiment_bulk', methods=['POST'])
+def bulk_sentiment_analysis():
+    if request.method == 'POST':
+        paragraph = request.args.get('paragraph')
+        if paragraph:
+            x_input, results = get_paragraph_sentiment(paragraph)
+            return make_response(jsonify({'results': results, 'status_code':200}), 200)
+        return make_response(jsonify({'error':'sorry! unable to parse', 'status_code':500}), 500)
 # Start the server, continuously listen to requests.
 
 if __name__=="__main__":
